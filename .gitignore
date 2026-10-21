@@ -1,0 +1,10 @@
+cat > .gitignore << 'EOF'
+data/
+db/
+*.duckdb
+*.duckdb.wal
+.venv/
+.ipynb_checkpoints/
+.DS_Store
+submission*.csv
+EOF
