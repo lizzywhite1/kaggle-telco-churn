@@ -5,15 +5,19 @@ Reminder: update src/path.py
 
 **Objectives**: The primary objective is to predict whether a customer will churn or not. This is given by Churn label. In our classification model we may also want to add a higher cost to customers with a higher Customer Lifetime Value (CLTV). A secondary objective would be understanding why customers churn, especially high value customers, so we can prevent against it. 3) Understand the potential loss/gains to be made in not preventing/avoiding customer churn. Summarise these findings in a presentation. 
 
-**Business Impacts**
+**Business Impacts and Insights**
 1. Identify customers who will churn and prevent them from doing so.
-2. In order to prevent them from doing so, we need to understand the most common reason for them churning, and implement a stratergy to avoid it. *Could we build a secondary model to predict churn reason, or should we implement a non-ML solution for predicting churn reason in high probability of churn customers?*. 
-3. Assess the financial impact of preventing churn versus doing nothing. 
+2. In order to prevent them from doing so, we need to understand the most common reason for them churning, and implement a stratergy to avoid it. A secondary ML model or non-ML approach could be applied down the line, to decide how to address each churning customer. 
 
 **Additional Considerations**: 
-1. As mentioned, customers with higher CLTV, a more costly to lose. Ideally, final model should account for this within the cost functions.
+1. As mentioned, customers with higher CLTV, a more costly to lose. Ideally, we want a final model which should account for this within the cost functions.
 
-**Metrics**
-The following metrics were considered,
+**KPI Used**
+The aim of this is to model is to prevent churn with the ultimate goal of improving the business's profit. As such when assessing the performance of the model on the test set we want a metric which incooperates both our correct churn or not churn prediction and the CLTV. Comparing models based off
+$$
+CLTV retained = \sum Predicted churn \times CLTV,
+$$
+If the model correctly identifies a customer about to churn, then we assign predicted churn = 1, else 0. This KPI optimises the model which retains the most CLTV. 
 
-Ultimately, the _ was chosen as the final model metric 
+**Metric used**
+Select a model metric which aligns with this KPI. Depending on the cost of the intervention, the cost of incorrectly predicting no churn when a customer is about to churn may be more costly, than predicting churn when a customer will not churn. If we assume 
